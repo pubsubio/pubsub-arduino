@@ -8,7 +8,6 @@ byte ip[] = { 192,168,0,9 };
 byte hub[] = {192,168,0,160}; // hub ip address
 
 Client pclient(hub, 9999); // hub port
-Server server(80);
 
 unsigned long last = millis();
 
