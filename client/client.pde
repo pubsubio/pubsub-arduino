@@ -5,9 +5,9 @@
 
 byte mac[] = {  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 byte ip[] = { 192,168,0,9 };
-byte hub[] = {192,168,0,160};
+byte hub[] = {192,168,0,160}; // hub ip address
 
-Client pclient(hub, 9999);
+Client pclient(hub, 9999); // hub port
 Server server(80);
 
 unsigned long last = millis();
@@ -37,53 +37,6 @@ void loop() {
   }
 };
 
-String serve() {
-  // listen for incoming clients
-  Client client = server.available();
-  String ret = String("/");
-  
-  if (client) {
-    // an http request ends with a blank line
-    boolean currentLineIsBlank = true;
-    int i = 0;
-    boolean capture = true;
-    
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.print(c);
-        if(capture == true && i++ >= 5 && c != ' ') {
-          ret = ret + c;
-        }    
-        if (i >= 5 && c == ' ') {
-          capture = false;
-        }
-        
-        // if you've gotten to the end of the line (received a newline
-        // character) and the line is blank, the http request has ended,
-        // so you can send a reply
-        if (c == '\n' && currentLineIsBlank) {
-          // send a standard http response header
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-Type: text/plain");
-          client.println();
-          client.println("ok");
-          break;
-        }
-        if (c == '\n') {
-          currentLineIsBlank = true;
-        }  else if (c != '\r') {
-          currentLineIsBlank = false;
-        }
-      }
-    }
-    // give the web browser time to receive the data
-    delay(1);
-    // close the connection:
-    client.stop();
-  }
-  return ret;
-};
 boolean publish(int temp) {
   publish(String(), temp);
 };
