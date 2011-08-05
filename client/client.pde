@@ -30,8 +30,8 @@ void loop() {
   }
 };
 
-boolean publish(int temp) {
-  publish(String(), temp);
+boolean publish(String body) {
+  publish(String(), body);
 };
 boolean publish(String hub,String body) {
   if (pclient.connect()) {
