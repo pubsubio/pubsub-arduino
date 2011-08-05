@@ -8,6 +8,6 @@ Publish to the value of Analog Port 0 to default hub
 	
     publish("arduino",String("{\"A0\":" +  String(analogRead(A0),DEC) + "}")));
 
-Publish the same thing to the arduino sub hub
+Publish the same thing to the Arduino sub hub
 
-	  publish("arduino",String("{\"A0\":" +  String(analogRead(A0),DEC) + "}")));
+	publish("arduino",String("{\"A0\":" +  String(analogRead(A0),DEC) + "}")));
