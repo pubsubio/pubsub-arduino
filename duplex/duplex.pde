@@ -17,7 +17,11 @@ void setup() {
     
   delay(1000);
 };
-void loop() {  
+void loop() {
+  if (s != "/") {
+    Serial.println(s);
+  }
+  
   if(millis() - last > 1000UL) {
       String doc = String("{\"temp\":" +  String(analogRead(A0),DEC) + "}");
       
@@ -31,17 +35,11 @@ void loop() {
 };
 
 boolean publish(int temp) {
-  publish(String(), temp);
+  publish(String("/"), temp);
 };
 boolean publish(String hub,String body) {
   if (pclient.connect()) {
-    if (hub != "") {
-      hub = hub + '/';    
-    }
-    
-    pclient.println(String("POST /" + hub + "publish HTTP/1.0"));
-    pclient.println(String("Content-Length: " + String(body.length() + 8,DEC)));
-    pclient.println();
+    pclient.println(String("{\"sub\":\""+ hub +"\"}");
     pclient.println(String("{\"doc\":" + body + "}"));
     pclient.stop();
     
