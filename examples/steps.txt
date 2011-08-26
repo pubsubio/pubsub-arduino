@@ -1,1 +1,0 @@
-curl http://localhost:9999/arduino/publish -d '{"doc":{"hello":"sub"}}'
