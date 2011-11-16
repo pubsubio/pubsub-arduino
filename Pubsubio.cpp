@@ -71,8 +71,8 @@ void Pubsubio::monitor() {
 			return;
 		}
 		if(i == -49) {
-		    int id = parseInt(parseMessageProperty("id", _message));
-			String doc = parseMessageProperty("doc", _message);
+		    int id = parseInt(parseProperty("id", _message));
+			String doc = parseProperty("doc", _message);
 			doc = doc.substring(0,doc.length() - 1);
 
 		    EventDelegate delegate = _subs[id];
@@ -100,7 +100,7 @@ int Pubsubio::parseInt(String text) {
   return x;
 }  
 
-String Pubsubio::parseMessageProperty(String property, String data) {
+String Pubsubio::parseProperty(String property, String data) {
     property = "\"" + property + "\"";
     int propertyDataStart = data.indexOf(property) + property.length();
     
@@ -135,4 +135,5 @@ void Pubsubio::send(String body) {
 		_client.print(0x000000, BYTE);
 	    _client.print(body);
 	    _client.print(0xFFFFFD, BYTE);
+}nt(0xFFFFFD, BYTE);
 }

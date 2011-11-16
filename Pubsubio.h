@@ -27,11 +27,12 @@ class Pubsubio
 		int subscribe(String query, EventDelegate delegate);
 		void unsubscribe(int id);
 		void monitor();
+		String parseProperty(String property, String data);
 	private:
 		Client _client;
 		void send(String body);
 		int parseInt(String text);
-		String parseMessageProperty(String property, String data);
 };
 
+#endif
 #endif
