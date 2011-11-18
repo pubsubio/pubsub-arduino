@@ -14,7 +14,7 @@ void setup() {
   Ethernet.begin(mac, ip);  
   delay(1000); 
   
-  client.connect("arduino"); 
+  pubsub.connect("arduino"); 
 
   pubsub.subscribe("{\"hello\":\"world\"}",hello); 
 }
@@ -23,7 +23,7 @@ void loop() {
   pubsub.monitor();
 
   if(millis() - last > 1000UL) {
-    pubsub.publish("{\"A0\": + String(analogRead(A0),DEC) + "}");
+    pubsub.publish("{\"A0\":" + String(analogRead(A0),DEC) + "}");
     last = millis();
   }
 }
