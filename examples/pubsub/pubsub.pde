@@ -4,7 +4,11 @@
 
 unsigned long last = millis();
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte ip[] = { 10, 0, 0, 1 };
+
+// ip address within subnet mask privded by my and most routers
+// if it doesnt work check the ips assigned by your router
+byte ip[] = { 192,168,0,100 }; 
+
 byte hub[] = { 79, 125, 4, 43 }; // hub.pubsub.io
 
 Pubsubio pubsub(hub);
@@ -14,6 +18,8 @@ void setup() {
   Ethernet.begin(mac, ip);  
   delay(1000); 
   
+
+  //head over to http://pubsub.io/console#arduino to see the data
   pubsub.connect("arduino"); 
   pubsub.subscribe("{\"hello\":\"world\"}", hello); 
 }
