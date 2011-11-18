@@ -135,5 +135,4 @@ void Pubsubio::send(String body) {
 		_client.print(0x000000, BYTE);
 	    _client.print(body);
 	    _client.print(0xFFFFFD, BYTE);
-}nt(0xFFFFFD, BYTE);
 }

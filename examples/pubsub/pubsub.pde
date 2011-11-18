@@ -4,10 +4,10 @@
 
 unsigned long last = millis();
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-byte ip[] = { 192,168,0,10 };
+byte ip[] = { 10, 0, 0, 1 };
+byte hub[] = { 79, 125, 4, 43 }; // hub.pubsub.io
 
-// instanciate a client to hub.pubsub.io
-Pubsubio pubsub;
+Pubsubio pubsub(hub);
 
 void setup() {
   Serial.begin(9600);
@@ -15,8 +15,7 @@ void setup() {
   delay(1000); 
   
   pubsub.connect("arduino"); 
-
-  pubsub.subscribe("{\"hello\":\"world\"}",hello); 
+  pubsub.subscribe("{\"hello\":\"world\"}", hello); 
 }
 
 void loop() {
@@ -29,6 +28,5 @@ void loop() {
 }
 
 void hello(String data) {
-  Serial.print("english: "); 
   Serial.println(data); 
 }
