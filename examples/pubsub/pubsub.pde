@@ -5,10 +5,9 @@
 unsigned long last = millis();
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
-// ip address within subnet mask privded by my and most routers
+// ip address within subnet mask provided by my and most routers
 // if it doesnt work check the ips assigned by your router
-byte ip[] = { 192,168,0,100 }; 
-
+byte ip[] = { 192, 168, 0, 100 }; 
 byte hub[] = { 79, 125, 4, 43 }; // hub.pubsub.io
 
 Pubsubio pubsub(hub);
